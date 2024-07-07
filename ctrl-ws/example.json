@@ -1,0 +1,19 @@
+{url app/main/tile/list method get ws_name {Get Tiles List} procedure dap::api::tile::get_list document {Returns the list of tiles for the latest app} private_param_list {} oauth_p t log_p n}
+{url app/main/tile/info method get ws_name {Get Tile Info} procedure dap::api::tile::info document {Returns the properties for the tile selected (DAC, DATI, DATC)} private_param_list {} oauth_p t log_p n}
+{url app/main/user/tile/list method get ws_name {Get User Tile Llist} procedure dap::api::user::get_tiles_list document {Returns the list of tiles for the user based on the group/tile relationship} private_param_list {} oauth_p t log_p n}
+{url app/main/user/login method post ws_name {Get User Info} procedure dap::api::user::login document {INPUT: user (the user username or email), password.
+OUTPUT: sample {"response_code":"Ok","response_message":"User found","response_body":{"name":"Test, User","uclaID":"012345678","firstName":"User","lastName":"Test","email":"test@example.com","jwtToken":"token";}}} privateparam_list {} oauth_p n log_p n}
+{url app/main/user/profile method post ws_name {Creates or updates user profile information} procedure dap::api::user::profile::create_or_update document {Will create the extra properties for the user profile, department, office_location, mobile_phone
+Returns response_code = "Ok" if success updated/created
+Returns response_code = "Error" if fails updated/created, see backend logs to know the reason
+} private_param_list {} oauth_p t log_p n}
+{url app/info method get ws_name {Get app version info} procedure dap::api::version::info document {Returns the app version information} private_param_list {} oauth_p t log_p n}
+{url app/tile/ideas/comment method post ws_name {Add comment for an idea} procedure dgit_ideas::api::idea_comments::create document {Return a json file for creating a new idea_comments record} private_param_list {} oauth_p t log_p n}
+{url app/tile/ideas/details/:ideaId method get ws_name {Get idea details} procedure dgit_ideas::api::ideas::get_details document {Return a json file for getting the idea details} private_param_list {} oauth_p t log_p n}
+{url app/tile/ideas/idea method post ws_name {Add a new idea to ideas table} procedure dgit_ideas::api::ideas::create document {Return a json file for creating a new ideas record} private_param_list {} oauth_p t log_p n}
+{url app/tile/ideas/idea method put ws_name {Update an existing idea} procedure dgit_ideas::api::ideas::update document {Return a json file for updating a new ideas record} private_param_list {} oauth_p t log_p n}
+{url app/tile/ideas/idea/categories method get ws_name {Get Idea Categories} procedure dgit_ideas::api::ideas::get_categories document {Return a json file for idea categories list} private_param_list {} oauth_p n log_p n}
+{url app/tile/ideas/list method get ws_name {Get idea list} procedure dgit_ideas::api::ideas::get_list document {Return a json file for getting idea list} private_param_list {} oauth_p t log_p n}
+{url app/tile/ideas/vote method post ws_name {Vote for an idea} procedure dgit_ideas::api::idea_votes::create document {Return a json file for creating a new idea_votes record} private_param_list {} oauth_p t log_p n}
+{url app/tile/videos/list method get ws_name {Connect Videos list} procedure dgit::connect_videos::api::get_videos document {Gets the list of videos based on a specific instance/package id} private_param_list {} oauth_p t log_p n}
+{url app/tile/alerts/list method get ws_name {Get Published News} procedure tile::alerts::ws::get_published_news document {Return a published news json object for a specific uid.} private_param_list {} oauth_p t log_p n}

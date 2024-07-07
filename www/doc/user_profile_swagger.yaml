@@ -1,0 +1,126 @@
+swagger: "2.0"
+
+info:
+  description: "User Profile APIs"
+  version: "1.0.0"
+  title: "DGSOM App - User Profile"
+  contact:
+    email: "jcardona@mednet.ucla.edu"
+  
+host: "dgit-app-api.visual.ucla.edu"
+basePath: "/v2/app"
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+tags:
+- name: "User Profile"
+  description: "DGSOM App user profile update"
+schemes:
+- "https"
+paths:
+  /main/user/profile:
+    post:
+      security:
+        - Bearer: []
+      tags:
+      - "User Profile"
+      summary: "Creates or updates the user profile information in the backend"
+      description: "This will override the information comming from the first login into the app"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "department"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "email"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "officeLocation"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "lastName"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "firstName"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "mobilePhone"
+        in: "formData"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Invalid Client"
+          schema:
+            $ref: "#/definitions/Unauthorized"
+  
+definitions:
+    
+  Success:
+    required: 
+    - "response_code"
+    - "response_message"
+    - "response_body"
+    properties: 
+      response_code: 
+        type: "string"
+        example: "Ok"
+      response_message: 
+        type: "string"
+        example: "User profile updated"
+      response_body:
+        type: "string"
+        example: ""
+    type: "object"
+                  
+  Error:
+    required: 
+    - "response_code"
+    - "response_message"
+    - "response_body"
+    properties: 
+      response_code: 
+        type: "string"
+        example: "Error"
+      response_message: 
+        type: "string"
+        example: "User profile not updated"
+      response_body:
+        type: "string"
+        example: ""
+  
+  Unauthorized:
+    required:
+    - "response_code"
+    - "response_message"
+    - "response_body"
+    properties: 
+      response_code: 
+        type: "string"
+        example: "invalid_client"
+      response_message: 
+        type: "string"
+        example: "Access Denied"
+      response_body:
+        type: "string"
+        example: ""
+    type: "object"
+        
